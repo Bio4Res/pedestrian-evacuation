@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.awt.geom.Ellipse2D;
 
@@ -12,7 +12,7 @@ public class ObstacleCircle extends Obstacle {
 	/**
 	 * internal circle object
 	 */
-	private Ellipse2D.Double circle;
+	private final Ellipse2D.Double circle;
 
 	/**
 	 * Basic constructor for circle-shaped obstacles

@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.awt.geom.Point2D;
 import java.util.List;
@@ -24,17 +24,17 @@ public record Access (
 	 * @return a string representation of the access
 	 */
 	public String toString() {
-		String str = "access: {\n";
-		str += "\tid: " + id + "\n";
+		StringBuilder str = new StringBuilder("access: {\n");
+		str.append("\tid: ").append(id).append("\n");
 		if (!name.isEmpty())
-			str += "\tname: " + name + "\n";
+			str.append("\tname: ").append(name).append("\n");
 		if (!description.isEmpty())
-			str += "\tdescription: " + description + "\n";
-		str += "\tshape: [";
+			str.append("\tdescription: ").append(description).append("\n");
+		str.append("\tshape: [");
 		for (Point2D.Double p: shape) {
-			str += "(" + p.getX() + ", " + p.getY() + ") ";
+			str.append("(").append(p.getX()).append(", ").append(p.getY()).append(") ");
 		}
-		str += "]\n}";
-		return str;
+		str.append("]\n}");
+		return str.toString();
 	}
 }

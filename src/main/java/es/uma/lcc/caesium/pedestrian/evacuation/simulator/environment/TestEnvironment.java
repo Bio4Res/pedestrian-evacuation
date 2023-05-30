@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,11 +21,10 @@ public class TestEnvironment {
 	 * @throws JsonException if there is a problem reading the JSON file
 	 */
 	public static void main(String[] args) throws FileNotFoundException, JsonException {
-		String filename = (args.length == 0) ? "environment-example.json" : args[0];
+		String filename = (args.length == 0) ? "src/main/resources/environment-example.json" : args[0];
 		FileReader reader = new FileReader(filename);
 		JsonObject jo = (JsonObject) Jsoner.deserialize(reader);
 		Environment env = EnvironmentFactory.buildFromJSON(jo);
 		System.out.println(env);
 	}
-
 }

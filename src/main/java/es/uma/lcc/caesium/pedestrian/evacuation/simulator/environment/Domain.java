@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +33,11 @@ public class Domain {
 	/**
 	 * list of obstacles in the domain
 	 */
-	private List<Obstacle> obstacles;
+	private final List<Obstacle> obstacles;
 	/**
 	 * list of accesses in the domain
 	 */
-	private List<Access> accesses;
+	private final List<Access> accesses;
 	
 
 	/**
@@ -53,8 +53,8 @@ public class Domain {
 		this.height = height;
 		name = "domain" + id;
 		description = "";
-		obstacles = new ArrayList<Obstacle>();
-		accesses = new ArrayList<Access>();
+		obstacles = new ArrayList<>();
+		accesses = new ArrayList<>();
 	}
 	
 	/**
@@ -156,26 +156,26 @@ public class Domain {
 	 * @return a string version of the domain
 	 */
 	public String toString() {
-		String str = "domain: {\n";
-		str += "\tid: " + id + "\n";
+		StringBuilder str = new StringBuilder("domain: {\n");
+		str.append("\tid: ").append(id).append("\n");
 		if (!name.isEmpty())
-			str += "\tname: " + name + "\n";
+			str.append("\tname: ").append(name).append("\n");
 		if (!description.isEmpty())
-			str += "\tdescription: " + description + "\n";
+			str.append("\tdescription: ").append(description).append("\n");
 		if (obstacles.size()>0) {
-			str += "\tobstacles: [\n";
+			str.append("\tobstacles: [\n");
 			for (Obstacle o: obstacles) 
-				str += "\t\t" + o.toString().replace("\n", "\n\t\t") + "\n";
-			str += "\t]\n";
+				str.append("\t\t").append(o.toString().replace("\n", "\n\t\t")).append("\n");
+			str.append("\t]\n");
 		}
 		if (accesses.size()>0) {
-			str += "\taccesses: [\n";
+			str.append("\taccesses: [\n");
 			for (Access a: accesses) 
-				str += "\t\t" + a.toString().replace("\n", "\n\t\t") + "\n";
-			str += "\t]\n";
+				str.append("\t\t").append(a.toString().replace("\n", "\n\t\t")).append("\n");
+			str.append("\t]\n");
 		}
-		str += "}";
-		return str;
+		str.append("}");
+		return str.toString();
 	}
 
 }

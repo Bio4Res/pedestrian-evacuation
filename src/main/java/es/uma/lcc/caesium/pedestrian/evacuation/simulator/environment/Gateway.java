@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 
 /**

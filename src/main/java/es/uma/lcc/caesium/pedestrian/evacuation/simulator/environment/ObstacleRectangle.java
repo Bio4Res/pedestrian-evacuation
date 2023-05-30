@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.awt.geom.Rectangle2D;
 
@@ -12,7 +12,7 @@ public class ObstacleRectangle extends Obstacle {
 	/**
 	 * Internal rectangle object
 	 */
-	private Rectangle2D.Double rectangle;
+	private final Rectangle2D.Double rectangle;
 	
 	/**
 	 * Basic constructor for rectangle-shaped obstacles

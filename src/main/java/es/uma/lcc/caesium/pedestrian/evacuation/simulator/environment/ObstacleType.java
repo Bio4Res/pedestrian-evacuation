@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 /**
  * Obstacle types
@@ -18,4 +18,4 @@ public enum ObstacleType {
 	 * polygonal obstacle
 	 */
 	POLYGON
-};
+}

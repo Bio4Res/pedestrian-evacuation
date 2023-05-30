@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.util.Iterator;
 import java.util.List;
@@ -115,39 +115,45 @@ public class EnvironmentFactory {
 	 */
 	private static Obstacle getObstacle(JsonObject jo) {
 		ObstacleType type;
-		if (jo.containsKey("type"))
-    		type = ObstacleType.valueOf(((String)jo.get("type")).toUpperCase());
-    	else
-    		type = ObstacleType.RECTANGLE;
-    	Obstacle obs = null;
-    	switch (type) {
-    	case CIRCLE:
-    		double r = getDouble(jo, "radius");
-    		double x = getDouble((JsonObject)jo.get("center"), "X");
-    		double y = getDouble((JsonObject)jo.get("center"), "Y");
-    		obs = new ObstacleCircle (x, y, r);
-    		break;
-		case POLYGON:
-			JsonArray jpoints = (JsonArray) jo.get("points");
-			List<Point2D.Double> points = getPoints(jpoints);
-			obs = new ObstaclePolygon (points);
-			break;
-		case RECTANGLE:
-    		x = getDouble((JsonObject)jo.get("top"), "X");
-    		y = getDouble((JsonObject)jo.get("top"), "Y");
-    		double w = getDouble(jo, "width");
-    		double h = getDouble(jo, "height");
-    		obs = new ObstacleRectangle (x, y, w, h);
-    		break;
-		default:
-			System.out.println("Should not be here " + type);
-			break; 
-    	}
-    	if (jo.containsKey("name"))
-    		obs.setName((String)jo.get("name"));
-    	if (jo.containsKey("description"))
-    		obs.setDescription((String)jo.get("description"));
-    	return obs;
+		if (jo.containsKey("type")) {
+			type = ObstacleType.valueOf(((String) jo.get("type")).toUpperCase());
+		} else {
+			type = ObstacleType.RECTANGLE;
+		}
+		Obstacle obs = null;
+		switch (type) {
+			case CIRCLE: {
+				double r = getDouble(jo, "radius");
+				double x = getDouble((JsonObject) jo.get("center"), "X");
+				double y = getDouble((JsonObject) jo.get("center"), "Y");
+				obs = new ObstacleCircle(x, y, r);
+				break;
+			}
+			case POLYGON: {
+				JsonArray jpoints = (JsonArray) jo.get("points");
+				List<Point2D.Double> points = getPoints(jpoints);
+				obs = new ObstaclePolygon(points);
+				break;
+			}
+			case RECTANGLE: {
+				double x = getDouble((JsonObject) jo.get("top"), "X");
+				double y = getDouble((JsonObject) jo.get("top"), "Y");
+				double w = getDouble(jo, "width");
+				double h = getDouble(jo, "height");
+				obs = new ObstacleRectangle(x, y, w, h);
+				break;
+			}
+			default:
+				System.out.println("Should not be here " + type);
+				break;
+		}
+		if (jo.containsKey("name")) {
+			obs.setName((String) jo.get("name"));
+		}
+		if (jo.containsKey("description")) {
+			obs.setDescription((String) jo.get("description"));
+		}
+		return obs;
 	}
 	
 	
@@ -158,7 +164,7 @@ public class EnvironmentFactory {
 	 */
 	private static List<Point2D.Double> getPoints(JsonArray jpoints) {
 		Iterator<Object> ip = jpoints.iterator();
-		List<Point2D.Double> points = new LinkedList<Point2D.Double>();
+		List<Point2D.Double> points = new LinkedList<>();
 		while (ip.hasNext()) {
 			JsonObject jp = (JsonObject) ip.next();
 			points.add(new Point2D.Double(getDouble(jp, "X"), getDouble(jp, "Y")));

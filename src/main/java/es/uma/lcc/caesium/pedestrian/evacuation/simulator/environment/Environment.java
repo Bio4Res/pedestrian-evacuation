@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -25,8 +25,8 @@ public class Environment {
 	 * Basic constructor. Creates an environment with no domains or gateways.
 	 */
 	public Environment() {
-		domains  = new HashMap <Integer, Domain> ();
-		gateways = new HashMap <Integer, Gateway> ();
+		domains  = new HashMap<>();
+		gateways = new HashMap<>();
 	}
 	
 	/**
@@ -93,18 +93,18 @@ public class Environment {
 	 * @return a string version of the environment
 	 */
 	public String toString() {
-		String str = "Environment: {\n";
-		str += "\tdomains: [\n";
+		StringBuilder str = new StringBuilder("Environment: {\n");
+		str.append("\tdomains: [\n");
 		for (Domain d: domains.values()) {
-			str += "\t\t" + d.toString().replace("\n", "\n\t\t") + "\n"; 
+			str.append("\t\t").append(d.toString().replace("\n", "\n\t\t")).append("\n");
 		}
-		str += "\t]\n";
-		str += "\tgateways: [\n";
+		str.append("\t]\n");
+		str.append("\tgateways: [\n");
 		for (Gateway g: gateways.values()) {
-			str += "\t\t" + g.toString().replace("\n", "\n\t\t") + "\n"; 
+			str.append("\t\t").append(g.toString().replace("\n", "\n\t\t")).append("\n");
 		}
-		str += "\t]\n";		
-		str += "\n}";
-		return str;
+		str.append("\t]\n");
+		str.append("\n}");
+		return str.toString();
 	}
 }

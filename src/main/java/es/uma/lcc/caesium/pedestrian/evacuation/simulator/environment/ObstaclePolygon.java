@@ -1,4 +1,4 @@
-package es.uma.lcc.caesium.evacuation.simulator.environment;
+package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
@@ -15,7 +15,7 @@ public class ObstaclePolygon extends Obstacle {
 	/**
 	 * Internal polygon object
 	 */
-	private Path2D.Double polygon;
+	private final Path2D.Double polygon;
 	
 	/**
 	 * Basic constructor for polygon-shaped obstacles
@@ -45,23 +45,23 @@ public class ObstaclePolygon extends Obstacle {
 
 	@Override
 	public String toString() {
-		String str = "obstacle: {\n";
-		str += "\ttype: " + getType() + "\n";
+		StringBuilder str = new StringBuilder("obstacle: {\n");
+		str.append("\ttype: ").append(getType()).append("\n");
 		if (!name.isEmpty())
-			str += "\tname: " + name + "\n";
+			str.append("\tname: ").append(name).append("\n");
 		if (!description.isEmpty())
-			str += "\tdescription: " + description + "\n";
-		str += "\tpoints: [";
+			str.append("\tdescription: ").append(description).append("\n");
+		str.append("\tpoints: [");
 		PathIterator pathIterator = polygon.getPathIterator(null);
 		double[] coords = new double[6];
 		while (!pathIterator.isDone()) {
 			if (pathIterator.currentSegment(coords) != PathIterator.SEG_CLOSE) {
-				str += "(" + coords[0] + ", " + coords[1] + ") ";
+				str.append("(").append(coords[0]).append(", ").append(coords[1]).append(") ");
 			}
 			pathIterator.next();
 		}
-		str += "]\n}";
-		return str;
+		str.append("]\n}");
+		return str.toString();
 	}
 
 }
