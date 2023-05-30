@@ -1,5 +1,6 @@
 package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -35,6 +36,9 @@ public class ObstacleRectangle extends Obstacle {
 	public boolean contains(double x, double y) {
 		return rectangle.contains(x, y);
 	}
+
+	@Override
+	public Shape getShape() { return rectangle; }
 
 	@Override
 	public String toString() {

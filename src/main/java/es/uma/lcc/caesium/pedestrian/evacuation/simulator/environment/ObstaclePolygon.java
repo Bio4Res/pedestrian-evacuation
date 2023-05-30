@@ -1,9 +1,13 @@
 package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
+import java.awt.*;
 import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.util.List;
+
+import static es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment.Path2D.fromPoints;
+
 
 /**
  * Class for polygon-shaped obstacles
@@ -15,22 +19,14 @@ public class ObstaclePolygon extends Obstacle {
 	/**
 	 * Internal polygon object
 	 */
-	private final Path2D.Double polygon;
+	private final Path2D.Double path;
 	
 	/**
 	 * Basic constructor for polygon-shaped obstacles
 	 * @param points a list of points defining the polygon
 	 */
 	public ObstaclePolygon(List<Point2D.Double> points) {
-		polygon = new Path2D.Double();
-		Point2D.Double p = points.get(0);
-		polygon.moveTo(p.getX(), p.getY());
-		int n = points.size();
-		for (int i=1; i<n; i++) {
-			p = points.get(i);
-			polygon.lineTo(p.getX(), p.getY());
-		}
-		polygon.closePath();
+		path = fromPoints(points);
 	}
 
 	@Override
@@ -40,8 +36,11 @@ public class ObstaclePolygon extends Obstacle {
 
 	@Override
 	public boolean contains(double x, double y) {
-		return polygon.contains(x, y);
+		return path.contains(x, y);
 	}
+
+	@Override
+	public Shape getShape() { return path; }
 
 	@Override
 	public String toString() {
@@ -52,7 +51,7 @@ public class ObstaclePolygon extends Obstacle {
 		if (!description.isEmpty())
 			str.append("\tdescription: ").append(description).append("\n");
 		str.append("\tpoints: [");
-		PathIterator pathIterator = polygon.getPathIterator(null);
+		PathIterator pathIterator = path.getPathIterator(null);
 		double[] coords = new double[6];
 		while (!pathIterator.isDone()) {
 			if (pathIterator.currentSegment(coords) != PathIterator.SEG_CLOSE) {

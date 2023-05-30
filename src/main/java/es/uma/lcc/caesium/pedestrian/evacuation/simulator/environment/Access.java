@@ -1,14 +1,18 @@
 package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
+
+import static es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment.Path2D.fromPoints;
 
 /**
  * Class for representing accesses, namely the physical instantiation of a gateway within a certain domain.
  * @param id the id of the access
  * @param name the name of the access (can be empty)
  * @param description the description of the access (can be empty)
- * @param shape shape of the access, namely a list of points defining the boundary whose crossing leads to passing to another domain
+ * @param shape shape of the access, namely a list of points defining the boundary whose crossing leads to passing to
+ *               another domain
  * @author ccottap
  *
  */
@@ -19,6 +23,12 @@ public record Access (
 	List<Point2D.Double> shape
 )
 {
+	/**
+	 * Returns shape corresponding to this access.
+	 * @return shape corresponding to this access.
+	 */
+	public Shape getShape() { return fromPoints(shape);	}
+
 	/**
 	 * Returns a printable version of the access
 	 * @return a string representation of the access

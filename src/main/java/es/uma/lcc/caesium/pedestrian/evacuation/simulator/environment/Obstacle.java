@@ -4,6 +4,8 @@
 package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
 
+import java.awt.*;
+
 /**
  * Abstract class for representing obstacles
  * @author ccottap
@@ -74,7 +76,14 @@ public abstract class Obstacle {
 	 * @return true iff the point (x,y) is contained within the obstacle.
 	 */
 	public abstract boolean contains (double x, double y);
-	
+
+
+	/**
+	 * Returns geometrical shape corresponding to the obstacle.
+	 * @return geometrical shape corresponding to the obstacle.
+	 */
+	public abstract Shape getShape();
+
 	/**
 	 * Returns a printable version of the obstacle
 	 * @return a string version of the obstacle

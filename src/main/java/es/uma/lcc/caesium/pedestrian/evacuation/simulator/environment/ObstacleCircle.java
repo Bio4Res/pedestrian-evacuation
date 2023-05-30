@@ -1,5 +1,6 @@
 package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 /**
@@ -35,6 +36,9 @@ public class ObstacleCircle extends Obstacle {
 	public boolean contains(double x, double y) {
 		return circle.contains(x, y);
 	}
+
+	@Override
+	public Shape getShape() { return circle; }
 
 	@Override
 	public String toString() {
