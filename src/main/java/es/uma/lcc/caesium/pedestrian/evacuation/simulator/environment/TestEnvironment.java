@@ -1,30 +1,33 @@
 package es.uma.lcc.caesium.pedestrian.evacuation.simulator.environment;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
 import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.Jsoner;
+
+import java.io.FileNotFoundException;
+import java.util.Objects;
 
 /**
- * Class to test the classes modeling the environment
- * @author ccottap
+ * Class to test the classes modeling the environment.
  *
+ * @author ccottap, ppgllrd.
  */
 public class TestEnvironment {
 
-	/**
-	 * Main method
-	 * @param args command-line arguments (name of JSON file)
-	 * @throws FileNotFoundException if JSON file does  not exist
-	 * @throws JsonException if there is a problem reading the JSON file
-	 */
-	public static void main(String[] args) throws FileNotFoundException, JsonException {
-		String filename = (args.length == 0) ? "src/main/resources/environment-example.json" : args[0];
-		FileReader reader = new FileReader(filename);
-		JsonObject jo = (JsonObject) Jsoner.deserialize(reader);
-		Environment env = EnvironmentFactory.buildFromJSON(jo);
-		System.out.println(env);
-	}
+  /**
+   * Main method
+   *
+   * @param args command-line arguments (name of JSON file).
+   * @throws FileNotFoundException if JSON file does  not exist.
+   * @throws JsonException         if there is a problem reading the JSON file.
+   */
+  public static void main(String[] args) throws FileNotFoundException, JsonException {
+    String defaultFilename = Objects.requireNonNull(TestEnvironment.class.getResource("/environment-example.json")).getFile();
+    String filename = (args.length == 0) ? defaultFilename : args[0];
+
+    Environment environment = Environment.fromFile(filename);
+    JsonObject json = environment.toJson();
+    System.out.println(json);
+    System.out.println(environment.jsonSerialized());
+    System.out.println(environment.jsonPrettyPrinted());
+  }
 }
