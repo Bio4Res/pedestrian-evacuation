@@ -183,7 +183,7 @@ public class Environment {
    * @param indentation the indentation to be used.
    * @return a string with the json serialization of the environment, pretty printed.
    */
-  String jsonPrettyPrinted(String indentation) {
+   private String jsonPrettyPrinted(String indentation) {
     String printable = jsonSerialized();
     StringWriter writer = new StringWriter();
 
@@ -199,7 +199,7 @@ public class Environment {
    * Returns a string with the json serialization of the environment, pretty printed.
    * @return a string with the json serialization of the environment, pretty printed.
    */
-  String jsonPrettyPrinted() {
+  public String jsonPrettyPrinted() {
     return jsonPrettyPrinted("  ");
   }
 
