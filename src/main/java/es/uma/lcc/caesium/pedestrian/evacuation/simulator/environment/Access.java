@@ -76,4 +76,10 @@ public record Access(
   public int hashCode() {
     return Objects.hash(id, name, description, shape);
   }
+  
+  
+  @Override
+  public String toString() {
+	  return toJson().toString();
+  }
 }
