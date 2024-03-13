@@ -62,22 +62,23 @@ public class Environment {
   /**
    * @param file the file with json contents to be parsed.
    * @return an environment from the provided file.
-   * @throws FileNotFoundException
+   * @throws IOException
    * @throws JsonException
    */
-  public static Environment fromFile(File file) throws FileNotFoundException, JsonException {
+  public static Environment fromFile(File file) throws IOException, JsonException {
     FileReader reader = new FileReader(file);
     JsonObject json = (JsonObject) Jsoner.deserialize(reader);
+    reader.close();
     return Environment.fromJson(json);
   }
 
   /**
    * @param filename the name of the file with json contents to be parsed.
    * @return an environment from the provided file.
-   * @throws FileNotFoundException
+   * @throws IOException
    * @throws JsonException
    */
-  public static Environment fromFile(String filename) throws FileNotFoundException, JsonException {
+  public static Environment fromFile(String filename) throws IOException, JsonException {
     return fromFile(new File(filename));
   }
 
