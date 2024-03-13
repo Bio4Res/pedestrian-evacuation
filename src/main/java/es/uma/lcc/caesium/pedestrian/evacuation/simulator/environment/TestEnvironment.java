@@ -4,6 +4,7 @@ import com.github.cliftonlabs.json_simple.JsonException;
 import com.github.cliftonlabs.json_simple.JsonObject;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -20,7 +21,7 @@ public class TestEnvironment {
    * @throws FileNotFoundException if JSON file does  not exist.
    * @throws JsonException         if there is a problem reading the JSON file.
    */
-  public static void main(String[] args) throws FileNotFoundException, JsonException {
+  public static void main(String[] args) throws IOException, JsonException {
     String defaultFilename = Objects.requireNonNull(TestEnvironment.class.getResource("/environment-example.json")).getFile();
     String filename = (args.length == 0) ? defaultFilename : args[0];
 
